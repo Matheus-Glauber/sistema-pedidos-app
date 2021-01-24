@@ -1,17 +1,30 @@
-package br.com.catrix.domain;
+package br.com.catrix.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import io.swagger.annotations.ApiModelProperty;
 
+@Entity
+@Table(name = "CATEGORIA")
 public class Categoria implements Serializable {
 
 	private static final long serialVersionUID = 4287881982766690017L;
 
 	@ApiModelProperty(value = "Código da categoria")
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
 	private Integer id;
 	
 	@ApiModelProperty(value = "Nome da Categoria")
+	@Column(name = "NOME")
 	private String nome;
 
 	public Categoria() {
