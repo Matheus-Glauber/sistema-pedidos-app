@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -29,6 +30,7 @@ public class Categoria implements Serializable {
 	@Column(name = "NOME")
 	private String nome;
 	
+	@ManyToMany(mappedBy = "categorias")
 	private List<Produto> produtos = new ArrayList<Produto>();
 
 	public Categoria() {
