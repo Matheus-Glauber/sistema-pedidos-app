@@ -1,4 +1,4 @@
-package br.com.catrix.domain;
+package br.com.catrix.entities;
 
 import java.io.Serializable;
 
