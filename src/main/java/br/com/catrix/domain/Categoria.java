@@ -2,11 +2,16 @@ package br.com.catrix.domain;
 
 import java.io.Serializable;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class Categoria implements Serializable {
 
 	private static final long serialVersionUID = 4287881982766690017L;
 
+	@ApiModelProperty(value = "Código da categoria")
 	private Integer id;
+	
+	@ApiModelProperty(value = "Nome da Categoria")
 	private String nome;
 
 	public Categoria() {
