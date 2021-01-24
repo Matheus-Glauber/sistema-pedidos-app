@@ -14,29 +14,35 @@ import javax.persistence.Table;
 import io.swagger.annotations.ApiModelProperty;
 
 @Entity
-@Table(name = "CATEGORIA")
-public class Categoria implements Serializable {
+@Table(name = "PRODUTO")
+public class Produto implements Serializable {
 
-	private static final long serialVersionUID = 4287881982766690017L;
+	private static final long serialVersionUID = -896927962269714775L;
 
-	@ApiModelProperty(value = "Código da categoria")
+	@ApiModelProperty(value = "Código do produto")
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@ApiModelProperty(value = "Nome da Categoria")
+
+	@ApiModelProperty(value = "Nome do produto")
 	@Column(name = "NOME")
 	private String nome;
-	
-	private List<Produto> produtos = new ArrayList<Produto>();
 
-	public Categoria() {
+	@ApiModelProperty(value = "Preço do produto")
+	@Column(name = "PRECO")
+	private Double preco;
+	
+	private List<Categoria> categorias = new ArrayList<Categoria>();
+
+	public Produto() {
+		// TODO Auto-generated constructor stub
 	}
 
-	public Categoria(Long id, String nome) {
+	public Produto(Long id, String nome, Double preco) {
 		this.id = id;
 		this.nome = nome;
+		this.preco = preco;
 	}
 
 	public Long getId() {
@@ -55,12 +61,20 @@ public class Categoria implements Serializable {
 		this.nome = nome;
 	}
 
-	public List<Produto> getProdutos() {
-		return produtos;
+	public Double getPreco() {
+		return preco;
 	}
 
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
+	public void setPreco(Double preco) {
+		this.preco = preco;
+	}
+
+	public List<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
 	}
 
 	@Override
@@ -79,7 +93,7 @@ public class Categoria implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Categoria other = (Categoria) obj;
+		Produto other = (Produto) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
