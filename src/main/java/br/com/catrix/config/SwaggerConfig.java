@@ -12,7 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
-//Para acessar o Swagger, digite no brownser -> localhost:8080/swagger-ui.html
+//Para acessar o Swagger, digite no brownser -> localhost:8085/swagger-ui.html
 	
 	@Bean
 	public Docket api() {
