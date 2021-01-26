@@ -14,6 +14,7 @@ import br.com.catrix.services.ProdutoService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
 @RequestMapping(value = "/produtos")
@@ -48,8 +49,10 @@ public class ProdutoController {
 	})
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}",produces = "application/json")
 	public ResponseEntity<Produto> buscarPorId(@PathVariable Long id) {
+		
 		Produto produtoRetorno = produtoService.buscarProdutoPorId(id);
 		return ResponseEntity.ok(produtoRetorno);
+			
 	}
 
 }

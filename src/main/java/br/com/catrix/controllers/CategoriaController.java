@@ -14,6 +14,7 @@ import br.com.catrix.services.CategoriaService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
 @RequestMapping(value = "/categorias")
@@ -48,8 +49,10 @@ public class CategoriaController {
 	})
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}",produces = "application/json")
 	public ResponseEntity<Categoria> buscarPorId(@PathVariable Long id) {
-		Categoria categoriaRetorno = categoriaService.buscar(id);
+		
+		Categoria categoriaRetorno  = categoriaService.buscar(id);
 		return ResponseEntity.ok(categoriaRetorno);
+		
 	}
 
 }
