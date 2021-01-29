@@ -7,7 +7,7 @@
 <ol>
   <li>Clone o repositório em uma pasta local com o comando: <i>git clone https://github.com/Matheus-Glauber/sistema-pedidos-app.git</i></li>
   <li>Execute o comando maven: <i>clean install</i></li>
-  <li>Rode o projeto e teste o seguinte link: <i>localhost:8085/swagger-ui.html</i> ou <a href="localhost:8085/swagger-ui.html">Clique Aqui</a></li>
+  <li>Rode o projeto e teste o seguinte link: <i>localhost:8085/swagger-ui.html</i></li>
 </ol>
 
 ## Especificações Técnicas
