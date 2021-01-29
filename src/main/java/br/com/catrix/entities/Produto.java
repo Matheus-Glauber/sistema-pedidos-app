@@ -17,16 +17,16 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Entity
 @Table(name = "PRODUTO")
-@EqualsAndHashCode(exclude = {"serialVersionUID", "nome", "preco", "categorias"}) @AllArgsConstructor @NoArgsConstructor @ToString
+@EqualsAndHashCode(exclude = {"serialVersionUID", "nome", "preco", "categorias"}) @RequiredArgsConstructor @NoArgsConstructor @ToString
 public class Produto implements Serializable {
 
 	private static final long serialVersionUID = -896927962269714775L;
@@ -51,8 +51,8 @@ public class Produto implements Serializable {
 	@Getter @Setter
 	@ManyToMany
 	@JoinTable(name = "PRODUTO_CATEGORIA", 
-		joinColumns = @JoinColumn(name = "produto_id"),
-		inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+		joinColumns = @JoinColumn(name = "PRODUTO_ID"),
+		inverseJoinColumns = @JoinColumn(name = "CATEGORIA_ID"))
 	@JsonIgnore
 	private List<Categoria> categorias = new ArrayList<Categoria>();
 
