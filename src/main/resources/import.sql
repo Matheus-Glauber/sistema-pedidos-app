@@ -14,6 +14,7 @@ INSERT INTO PRODUTO (ID, NOME, PRECO) VALUES (6, 'Kindle', 330.0);
 INSERT INTO PRODUTO (ID, NOME, PRECO) VALUES (7, 'Máquina de Lavar', 900.0);
 INSERT INTO PRODUTO (ID, NOME, PRECO) VALUES (8, 'Arte da Guerra', 50.0);
 
+ -- Inserindo os relacionamentos --
 INSERT INTO PRODUTO_CATEGORIA (produto_id, categoria_id) VALUES (1, 1);
 INSERT INTO PRODUTO_CATEGORIA (produto_id, categoria_id) VALUES (2, 1);
 INSERT INTO PRODUTO_CATEGORIA (produto_id, categoria_id) VALUES (3, 1);
@@ -22,3 +23,12 @@ INSERT INTO PRODUTO_CATEGORIA (produto_id, categoria_id) VALUES (5, 4);
 INSERT INTO PRODUTO_CATEGORIA (produto_id, categoria_id) VALUES (6, 3);
 INSERT INTO PRODUTO_CATEGORIA (produto_id, categoria_id) VALUES (7, 3);
 INSERT INTO PRODUTO_CATEGORIA (produto_id, categoria_id) VALUES (8, 2);
+
+-- Inserindo Estados --
+INSERT INTO ESTADO (ID, ESTADO) VALUES (1, 'PB');
+INSERT INTO ESTADO (ID, ESTADO) VALUES (2, 'MG');
+
+-- Inserindo Cidades --
+INSERT INTO CIDADE (ID, CIDADE, ESTADO_ID) VALUES (1, 'Campina Grande', 1);
+INSERT INTO CIDADE (ID, CIDADE, ESTADO_ID) VALUES (2, 'João Pessoa', 1);
+INSERT INTO CIDADE (ID, CIDADE, ESTADO_ID) VALUES (3, 'Belo Horizonte', 2);
