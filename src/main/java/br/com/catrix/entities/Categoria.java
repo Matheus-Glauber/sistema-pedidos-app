@@ -12,17 +12,19 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Entity
 @Table(name = "CATEGORIA")
-@EqualsAndHashCode(exclude = {"serialVersionUID", "nome", "produtos"}) @RequiredArgsConstructor @NoArgsConstructor @ToString
+@EqualsAndHashCode(exclude = {"serialVersionUID", "nome", "produtos"}) @AllArgsConstructor @NoArgsConstructor @ToString
 public class Categoria implements Serializable {
 
 	private static final long serialVersionUID = 4287881982766690017L;
@@ -40,6 +42,7 @@ public class Categoria implements Serializable {
 	private String nome;
 	
 	@Getter @Setter
+	@JsonManagedReference
 	@ManyToMany(mappedBy = "categorias")
 	private List<Produto> produtos = new ArrayList<Produto>();
 

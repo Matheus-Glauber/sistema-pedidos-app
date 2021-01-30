@@ -12,16 +12,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Entity
 @Table(name = "CIDADE")
-@EqualsAndHashCode(exclude = {"cidade"}) @RequiredArgsConstructor @NoArgsConstructor @ToString
+@EqualsAndHashCode(exclude = {"serialVersionUID", "cidade", "estado"}) @AllArgsConstructor @NoArgsConstructor @ToString
 public class Cidade implements Serializable {
 
 	private static final long serialVersionUID = -3426057513303683590L;

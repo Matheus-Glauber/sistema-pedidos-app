@@ -14,19 +14,19 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Entity
 @Table(name = "PRODUTO")
-@EqualsAndHashCode(exclude = {"serialVersionUID", "nome", "preco", "categorias"}) @RequiredArgsConstructor @NoArgsConstructor @ToString
+@EqualsAndHashCode(exclude = {"serialVersionUID", "nome", "preco", "categorias"}) @AllArgsConstructor @NoArgsConstructor @ToString
 public class Produto implements Serializable {
 
 	private static final long serialVersionUID = -896927962269714775L;
@@ -53,7 +53,7 @@ public class Produto implements Serializable {
 	@JoinTable(name = "PRODUTO_CATEGORIA", 
 		joinColumns = @JoinColumn(name = "PRODUTO_ID"),
 		inverseJoinColumns = @JoinColumn(name = "CATEGORIA_ID"))
-	@JsonIgnore
+	@JsonBackReference
 	private List<Categoria> categorias = new ArrayList<Categoria>();
 
 }

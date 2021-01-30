@@ -13,16 +13,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Entity
 @Table(name = "ESTADO")
-@EqualsAndHashCode(exclude = {"estado"}) @RequiredArgsConstructor @NoArgsConstructor @ToString
+@EqualsAndHashCode(exclude = {"serialVersionUID", "estado", "cidades"}) @AllArgsConstructor @NoArgsConstructor @ToString
 public class Estado implements Serializable {
 
 	private static final long serialVersionUID = -3736968647931261525L;
