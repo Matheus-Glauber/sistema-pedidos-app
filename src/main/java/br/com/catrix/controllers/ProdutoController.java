@@ -34,7 +34,7 @@ public class ProdutoController {
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<List<Produto>> listar() {	
 		List<Produto> listaProduto = produtoService.buscarTodosProdutos();
-		return ResponseEntity.ok(listaProduto);
+		return ResponseEntity.ok().body(listaProduto);
 	}
 	
 	@ApiOperation(value = "Retorna um produto, definido pelo id")
@@ -50,7 +50,7 @@ public class ProdutoController {
 	public ResponseEntity<Produto> buscarPorId(@PathVariable Long id) {
 		
 		Produto produtoRetorno = produtoService.buscarProdutoPorId(id);
-		return ResponseEntity.ok(produtoRetorno);
+		return ResponseEntity.ok().body(produtoRetorno);
 			
 	}
 

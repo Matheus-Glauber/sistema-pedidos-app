@@ -34,7 +34,7 @@ public class EstadoController {
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<List<Estado>> buscarTodos() {
 		List<Estado> estadosRetorno = estadoService.buscarTodos();
-		return ResponseEntity.ok(estadosRetorno);
+		return ResponseEntity.ok().body(estadosRetorno);
 	}
 	
 	@ApiOperation(value = "Retorna um Estado, definido pelo id")
@@ -49,7 +49,7 @@ public class EstadoController {
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}",produces = "application/json")
 	public ResponseEntity<Estado> buscarPorId(@PathVariable Long id) {
 		Estado estado = estadoService.buscarPorId(id);
-		return ResponseEntity.ok(estado);
+		return ResponseEntity.ok().body(estado);
 	}
 
 }

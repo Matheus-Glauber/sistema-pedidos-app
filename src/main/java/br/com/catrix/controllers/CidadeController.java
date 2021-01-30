@@ -33,8 +33,8 @@ public class CidadeController {
 	})
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<List<Cidade>> buscarTodos() {
-		List<Cidade> ecidadesRetorno = cidadeService.buscaCidades();
-		return ResponseEntity.ok(ecidadesRetorno);
+		List<Cidade> cidadesRetorno = cidadeService.buscaCidades();
+		return ResponseEntity.ok().body(cidadesRetorno);
 	}
 	
 	@ApiOperation(value = "Retorna uma Cidade, definida pelo id")
@@ -49,7 +49,7 @@ public class CidadeController {
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}",produces = "application/json")
 	public ResponseEntity<Cidade> buscarPorId(@PathVariable Long id) {
 		Cidade cidade = cidadeService.busCidadePorId(id);
-		return ResponseEntity.ok(cidade);
+		return ResponseEntity.ok().body(cidade);
 	}
 
 }

@@ -34,7 +34,7 @@ public class CategoriaController {
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<List<Categoria>> listar() {	
 		List<Categoria> listaCategoria = categoriaService.buscarTodos();
-		return ResponseEntity.ok(listaCategoria);
+		return ResponseEntity.ok().body(listaCategoria);
 	}
 	
 	@ApiOperation(value = "Retorna uma categoria, definido pelo id")
@@ -50,7 +50,7 @@ public class CategoriaController {
 	public ResponseEntity<Categoria> buscarPorId(@PathVariable Long id) {
 		
 		Categoria categoriaRetorno  = categoriaService.buscar(id);
-		return ResponseEntity.ok(categoriaRetorno);
+		return ResponseEntity.ok().body(categoriaRetorno);
 		
 	}
 
