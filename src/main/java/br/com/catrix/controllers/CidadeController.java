@@ -9,22 +9,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.catrix.entities.Produto;
-import br.com.catrix.services.ProdutoService;
+import br.com.catrix.entities.Cidade;
+import br.com.catrix.services.CidadeService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping(value = "/produtos")
-public class ProdutoController {
+@RequestMapping(value = "/cidades")
+public class CidadeController {
 	
 	@Autowired
-	private ProdutoService produtoService;
+	CidadeService cidadeService;
 	
-	@ApiOperation(value = "Retorna uma lista de produtos")
+	@ApiOperation(value = "Retorna uma lista das Cidades")
 	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Retorna a lista de produtos"),
+			@ApiResponse(code = 200, message = "Retorna a lista das Cidades"),
 			@ApiResponse(code = 400, message = "Página não encontrada"),
 			@ApiResponse(code = 401, message = "Usuário não autenticado"),
 			@ApiResponse(code = 403, message = "Usuário sem permissão"),
@@ -32,14 +32,14 @@ public class ProdutoController {
 			@ApiResponse(code = 500, message = "Internal Server Error")			
 	})
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<List<Produto>> listar() {	
-		List<Produto> listaProduto = produtoService.buscarTodosProdutos();
-		return ResponseEntity.ok().body(listaProduto);
+	public ResponseEntity<List<Cidade>> buscarTodos() {
+		List<Cidade> cidadesRetorno = cidadeService.buscaCidades();
+		return ResponseEntity.ok().body(cidadesRetorno);
 	}
 	
-	@ApiOperation(value = "Retorna um produto, definido pelo id")
+	@ApiOperation(value = "Retorna uma Cidade, definida pelo id")
 	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Retorna o produto"),
+			@ApiResponse(code = 200, message = "Retorna uma Cidade"),
 			@ApiResponse(code = 400, message = "Página não encontrada"),
 			@ApiResponse(code = 401, message = "Usuário não autenticado"),
 			@ApiResponse(code = 403, message = "Usuário sem permissão"),
@@ -47,11 +47,9 @@ public class ProdutoController {
 			@ApiResponse(code = 500, message = "Internal Server Error")	
 	})
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}",produces = "application/json")
-	public ResponseEntity<Produto> buscarPorId(@PathVariable Long id) {
-		
-		Produto produtoRetorno = produtoService.buscarProdutoPorId(id);
-		return ResponseEntity.ok().body(produtoRetorno);
-			
+	public ResponseEntity<Cidade> buscarPorId(@PathVariable Long id) {
+		Cidade cidade = cidadeService.busCidadePorId(id);
+		return ResponseEntity.ok().body(cidade);
 	}
 
 }

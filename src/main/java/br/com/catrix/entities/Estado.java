@@ -9,10 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -23,27 +21,26 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "CATEGORIA")
-@EqualsAndHashCode(exclude = {"serialVersionUID", "nome", "produtos"}) @AllArgsConstructor @NoArgsConstructor @ToString
-public class Categoria implements Serializable {
+@Table(name = "ESTADO")
+@EqualsAndHashCode(exclude = {"serialVersionUID", "estado", "cidades"}) @AllArgsConstructor @NoArgsConstructor @ToString
+public class Estado implements Serializable {
 
-	private static final long serialVersionUID = 4287881982766690017L;
-
+	private static final long serialVersionUID = -3736968647931261525L;
+	
 	@Getter
-	@ApiModelProperty(value = "Código da categoria")
+	@ApiModelProperty(value = "Código do Estado")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Long id;
 	
 	@Getter @Setter
-	@ApiModelProperty(value = "Nome da Categoria")
-	@Column(name = "NOME")
-	private String nome;
+	@ApiModelProperty(value = "Estado")
+	@Column(name = "ESTADO")
+	private String estado;
 	
 	@Getter @Setter
-	@JsonManagedReference
-	@ManyToMany(mappedBy = "categorias")
-	private List<Produto> produtos = new ArrayList<Produto>();
+	@OneToMany(mappedBy = "estado")
+	private List<Cidade> cidades = new ArrayList<Cidade>();
 
 }
