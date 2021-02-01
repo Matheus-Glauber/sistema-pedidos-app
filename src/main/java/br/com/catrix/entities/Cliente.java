@@ -6,11 +6,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.sun.istack.NotNull;
@@ -48,8 +51,11 @@ public class Cliente implements Serializable {
 	@ApiModelProperty(value = "Informa o tipo do cliente: 1 - Pessoa Física, 2 - Pessoa Jurídica")
 	private Integer tipoCliente;
 
+	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> enderecos = new ArrayList<Endereco>();
 
+	@ElementCollection
+	@CollectionTable(name = "TELEFONE")
 	private Set<String> telefones = new HashSet<String>();
 
 	public Cliente() {
