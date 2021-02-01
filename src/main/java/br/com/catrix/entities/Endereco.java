@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -43,8 +45,12 @@ public class Endereco implements Serializable {
 	@ApiModelProperty(value = "Cep referente ao endereço")
 	private String cep;
 
+	@ManyToOne
+	@JoinColumn(name = "CLIENTE_ID")
 	private Cliente cliente;
 
+	@ManyToOne
+	@JoinColumn(name = "CIDADE_ID")
 	private Cidade cidade;
 
 	public Endereco() {
