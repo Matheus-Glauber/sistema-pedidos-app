@@ -1,16 +1,17 @@
 package br.com.catrix.entities.enums;
 
-public enum TipoCliente {
+public enum EstadoPagamento {
 	
-	PESSOA_FISICA(1, "Pessoa Física"),
-	PESSOA_JURIDICA(2, "Pessoa Jurídica");
+	PENDENTE(1, "Pendente"),
+	QUITADO(2, "Quitado"),
+	CANCELADO(3, "Cancelado");
 	
 	private int codigo;
 	private String descricao;
-	
-	private TipoCliente(int cod, String desc) {
-		this.codigo = cod;
-		this.descricao = desc;
+
+	EstadoPagamento(int codigo, String descricao) {
+		this.codigo = codigo;
+		this.descricao = descricao;
 	}
 
 	public int getCodigo() {
@@ -21,12 +22,12 @@ public enum TipoCliente {
 		return descricao;
 	}
 	
-	public static TipoCliente toEnum(Integer cod) {
+	public static EstadoPagamento toEnum(Integer cod) {
 		if (cod.equals(null)) {
 			return null;
 		}
 		
-		for (TipoCliente x : TipoCliente.values()) {
+		for (EstadoPagamento x : EstadoPagamento.values()) {
 			if (cod.equals(x.getCodigo())) {
 				return x;
 			}
