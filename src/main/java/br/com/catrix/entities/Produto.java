@@ -2,7 +2,9 @@ package br.com.catrix.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -42,6 +45,9 @@ public class Produto implements Serializable {
 	@JoinTable(name = "PRODUTO_CATEGORIA", joinColumns = @JoinColumn(name = "PRODUTO_ID"), inverseJoinColumns = @JoinColumn(name = "CATEGORIA_ID"))
 	@JsonBackReference
 	private List<Categoria> categorias = new ArrayList<Categoria>();
+	
+	@OneToMany(mappedBy = "id.produto")
+	private Set<ItemPedido> itens = new HashSet<ItemPedido>();
 
 	public Produto() {
 	}
@@ -65,6 +71,15 @@ public class Produto implements Serializable {
 		builder.append(categorias);
 		builder.append("]");
 		return builder.toString();
+	}
+	
+	public List<Pedido> getPedidos() {
+		List<Pedido> lista = new ArrayList<Pedido>();
+		for (ItemPedido x : itens) {
+			lista.add(x.getPedido());
+		}
+		
+		return lista;
 	}
 
 	public String getNome() {
@@ -93,6 +108,14 @@ public class Produto implements Serializable {
 
 	public Long getId() {
 		return id;
+	}
+
+	public Set<ItemPedido> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<ItemPedido> itens) {
+		this.itens = itens;
 	}
 
 	@Override
