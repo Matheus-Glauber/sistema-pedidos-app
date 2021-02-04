@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -46,6 +47,7 @@ public class Produto implements Serializable {
 	@JsonBackReference
 	private List<Categoria> categorias = new ArrayList<Categoria>();
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "id.produto")
 	private Set<ItemPedido> itens = new HashSet<ItemPedido>();
 
@@ -73,6 +75,7 @@ public class Produto implements Serializable {
 		return builder.toString();
 	}
 	
+	@JsonIgnore
 	public List<Pedido> getPedidos() {
 		List<Pedido> lista = new ArrayList<Pedido>();
 		for (ItemPedido x : itens) {

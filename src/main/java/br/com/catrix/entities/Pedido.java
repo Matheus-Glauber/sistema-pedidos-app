@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "PEDIDO")
 public class Pedido implements Serializable {
@@ -28,6 +30,7 @@ public class Pedido implements Serializable {
 	@Column(name = "ID")
 	private Long id;
 
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	@Column(name = "INSTANTE")
 	private Date instante;
 	

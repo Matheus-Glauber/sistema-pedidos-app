@@ -12,6 +12,8 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.catrix.entities.enums.EstadoPagamento;
 
 @Entity
@@ -31,6 +33,7 @@ public class Pagamento implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "pedido_id")
 	@MapsId
+	@JsonIgnore
 	private Pedido pedido;
 
 	public Pagamento() {
