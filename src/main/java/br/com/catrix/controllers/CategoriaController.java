@@ -66,11 +66,7 @@ public class CategoriaController {
 	})
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<Void> inserirCategoria(@RequestBody Categoria categoria) {
-		try {
-			categoria = categoriaService.inserirCategoria(categoria);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		categoria = categoriaService.inserirCategoria(categoria);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoria.getId()).toUri();
 		
 		return ResponseEntity.created(uri).build();

@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import br.com.catrix.entities.Categoria;
@@ -26,7 +25,7 @@ public class CategoriaService {
 		return categoriaRepository.findAll();
 	}
 
-	public Categoria inserirCategoria(Categoria categoria) throws Exception {
+	public Categoria inserirCategoria(Categoria categoria) {
 		return categoriaRepository.save(categoria);
 	}
 
