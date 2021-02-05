@@ -71,5 +71,12 @@ public class CategoriaController {
 		
 		return ResponseEntity.created(uri).build();
 	}
+	
+	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
+	public ResponseEntity<Void> atualizarCategoria(@RequestBody Categoria categoria, @PathVariable Long id) {
+		categoria = categoriaService.atualizarCategoria(categoria);
+		
+		return ResponseEntity.noContent().build();
+	}
 
 }
