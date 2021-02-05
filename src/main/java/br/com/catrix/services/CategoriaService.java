@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import br.com.catrix.entities.Categoria;
@@ -32,6 +33,15 @@ public class CategoriaService {
 	public Categoria atualizarCategoria(Categoria categoria) {
 		buscar(categoria.getId());
 		return categoriaRepository.save(categoria);
+	}
+	
+	public void deletarCategoria(Long id) {
+		buscar(id);
+		try {
+			categoriaRepository.deleteById(id);			
+		} catch (DataIntegrityViolationException e) {
+			throw new NegocioNotFoundException("Não é possível excluir uma categoria que possua produtos relacionados.");
+		}
 	}
 
 }

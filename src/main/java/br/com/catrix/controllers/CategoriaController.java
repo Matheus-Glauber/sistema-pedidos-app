@@ -78,5 +78,18 @@ public class CategoriaController {
 		
 		return ResponseEntity.noContent().build();
 	}
+	
+	@ApiOperation(value = "Deleta uma cateogira")
+	@ApiResponses(value = {
+			@ApiResponse(code = 400, message = "Bad Request"),
+			@ApiResponse(code = 401, message = "Usuário não autenticado"),
+			@ApiResponse(code = 403, message = "Usuário sem permissão"),
+			@ApiResponse(code = 500, message = "Internal Server Error")	
+	})
+	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+	public ResponseEntity<Void> deletarCategoria(@PathVariable Long id) {
+		categoriaService.deletarCategoria(id);
+		return ResponseEntity.noContent().build();
+	}
 
 }
