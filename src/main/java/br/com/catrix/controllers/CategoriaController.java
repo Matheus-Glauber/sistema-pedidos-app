@@ -2,6 +2,7 @@ package br.com.catrix.controllers;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import br.com.catrix.dto.CategoriaDTO;
 import br.com.catrix.entities.Categoria;
 import br.com.catrix.services.CategoriaService;
 import io.swagger.annotations.ApiOperation;
@@ -35,9 +37,10 @@ public class CategoriaController {
 			@ApiResponse(code = 500, message = "Internal Server Error")			
 	})
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<List<Categoria>> listar() {	
+	public ResponseEntity<List<CategoriaDTO>> listar() {	
 		List<Categoria> listaCategoria = categoriaService.buscarTodos();
-		return ResponseEntity.ok().body(listaCategoria);
+		List<CategoriaDTO> listaDto = listaCategoria.stream().map(cat -> new CategoriaDTO(cat)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listaDto);
 	}
 	
 	@ApiOperation(value = "Retorna uma categoria, definido pelo id")
