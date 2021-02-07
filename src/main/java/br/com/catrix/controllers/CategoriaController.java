@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -70,7 +72,8 @@ public class CategoriaController {
 			@ApiResponse(code = 500, message = "Internal Server Error")	
 	})
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
-	public ResponseEntity<Void> inserirCategoria(@RequestBody Categoria categoria) {
+	public ResponseEntity<Void> inserirCategoria(@Valid @RequestBody CategoriaDTO categoriaDTO) {
+		Categoria categoria = categoriaService.fromDTO(categoriaDTO);
 		categoria = categoriaService.inserirCategoria(categoria);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoria.getId()).toUri();
 		
@@ -78,7 +81,8 @@ public class CategoriaController {
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
-	public ResponseEntity<Void> atualizarCategoria(@RequestBody Categoria categoria, @PathVariable Long id) {
+	public ResponseEntity<Void> atualizarCategoria(@Valid @RequestBody CategoriaDTO categoriaDTO, @PathVariable Long id) {
+		Categoria categoria = categoriaService.fromDTO(categoriaDTO, id);
 		categoria = categoriaService.atualizarCategoria(categoria);
 		
 		return ResponseEntity.noContent().build();

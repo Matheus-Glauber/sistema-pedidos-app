@@ -8,9 +8,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.querydsl.QPageRequest;
 import org.springframework.stereotype.Service;
 
+import br.com.catrix.dto.CategoriaDTO;
 import br.com.catrix.entities.Categoria;
 import br.com.catrix.repositories.CategoriaRepository;
 import br.com.catrix.services.exception.NegocioNotFoundException;
@@ -53,5 +53,15 @@ public class CategoriaService {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return categoriaRepository.findAll(pageRequest);
 	}
-
+	
+	public Categoria fromDTO(CategoriaDTO dto, Long id) {
+		if(dto.getId() == null) {
+			dto.setId(id);
+		}
+		return new Categoria(dto.getId(), dto.getNome());
+	}
+	
+	public Categoria fromDTO(CategoriaDTO dto) {
+		return new Categoria(dto.getId(), dto.getNome());
+	}
 }

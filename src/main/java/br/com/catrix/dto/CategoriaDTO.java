@@ -2,6 +2,10 @@ package br.com.catrix.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 import br.com.catrix.entities.Categoria;
 
 public class CategoriaDTO implements Serializable {
@@ -9,6 +13,9 @@ public class CategoriaDTO implements Serializable {
 	private static final long serialVersionUID = -4425538482454586666L;
 
 	private Long id;
+	
+	@NotEmpty(message = "Campo de preenchimento obrigatório")
+	@Length(min = 8, max = 80, message = "O tamanho deve ser entre {min} e {max} caracteres!")
 	private String nome;
 
 	public CategoriaDTO() {
